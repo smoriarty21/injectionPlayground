@@ -1,0 +1,16 @@
+#comments {
+    width: 100%;
+}
+
+#comment-feed-wrapper {
+    position: absolute;
+
+    top: 90px;
+    right:200px;
+}
+
+#logout {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
