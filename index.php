@@ -6,7 +6,7 @@ $db = new database();
 $db->connect();
 
 $db->checkLogin();
-var_dump($_SESSION);
+
 $error = "";
 
 if(isset($_POST['send'])) {
@@ -26,17 +26,10 @@ if(isset($_POST['submit-comment'])) {
     <link rel="stylesheet" href="style.css" type="text/css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/comments.js"></script>
+    <script src="js/post.js"></script>
 </head>
 <body>
 
-<form method="post" action="">
-    <input type="text" name="message"><br />
-    <input type="submit" value="Send" name="send"><br />
-</form>
-
-<?php echo $error; ?>
-
-<hr />
 <br />
 
 <div id="comments">
@@ -64,6 +57,20 @@ if(isset($_POST['submit-comment'])) {
 </div>
 
 <hr />
+
+<form method="post" action="">
+    <input type="text" name="message"><br />
+    <input type="submit" value="Send" name="send"><br />
+</form>
+
+<?php echo $error; ?>
+
+<hr />
+
+<form method="post" action="cgi-bin/git.py">
+    <input type="hidden" value="test" name="data">
+    <input type="submit" name="sendit" />
+</form>
 
 <div id="logout">
     <a href="logout.php">Logout</a>

@@ -46,28 +46,32 @@ class database {
         $password = md5($password);
 
         $query = "SELECT id FROM users WHERE username='$user' AND password='$password'";
-        //echo $query;
         $result = mysql_query($query);
         $row = mysql_fetch_row($result);
 
         if(!empty($row)) {
+            //Good login info
             $this->login($user);
         } else {
+            //Bad login info
             echo $query;
-            //echo "bad pass";
         }
     }
 
     public function login($user) {
-
-
+        //Set session variables and redirect
         $_SESSION['loggedIn'] = true;
         $_SESSION['username'] = $user;
+
+        //Set cookie for xss testing
+        $session = rand(100,999999).$_SESSION['username'].rand(0,99999).time(); //Random session ID
+        setcookie("id", md5($session),time()+3600);
 
         header('Location: index.php');
     }
 
     public function checkLogin() {
+        //Test for valid login
        if($_SESSION['loggedIn'] != true) {
            header('Location: login.php');
        }
